@@ -12,6 +12,7 @@ import {
 } from 'chart.js';
 import { format } from 'date-fns';
 import 'chartjs-adapter-date-fns';
+import type { InteractionMode } from 'chart.js'
 
 ChartJS.register(LinearScale, TimeScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -100,7 +101,7 @@ export default function MarketCapChart() {
     plugins: {
       legend: { display: false },
       tooltip: {
-        mode: 'index',
+        mode: 'index' as InteractionMode,
         intersect: false,
         backgroundColor: '#23272F',
         titleColor: '#fff',
