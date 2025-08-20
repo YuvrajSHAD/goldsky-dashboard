@@ -1,42 +1,33 @@
 {
-  "name": "privy-dashboard",
-  "version": "0.1.0",
-  "private": true,
+  "name": "final-dashboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "next start"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
   "dependencies": {
-    "@privy-io/react-auth": "^2.21.1",
+    "@privy-io/react-auth": "^2.21.4",
     "axios": "^1.11.0",
+    "chart.js": "^4.5.0",
     "chartjs-adapter-date-fns": "^3.0.0",
-    "cheerio": "^1.1.2",
     "date-fns": "^4.1.0",
     "ethers": "^6.15.0",
     "graphql": "^16.11.0",
-    "graphql-client": "^1.0.1",
     "graphql-request": "^7.2.0",
-    "intro.js": "^8.3.2",
-    "intro.js-react": "^1.0.0",
-    "joyride": "^0.1.4",
-    "next": "15.4.6",
-    "node-telegram-bot-api": "^0.66.0",
-    "puppeteer": "^24.16.2",
-    "react": "19.1.0",
+    "next": "^15.5.0",
+    "react": "^19.1.1",
     "react-chartjs-2": "^5.3.0",
-    "react-dom": "19.1.0"
+    "react-dom": "^19.1.1"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "15.4.6",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "@types/react": "19.1.10",
+    "typescript": "5.9.2"
   }
 }

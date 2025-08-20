@@ -57,7 +57,7 @@ export default function MarketCapChart() {
         sevenDaysPrior.setDate(sevenDaysPrior.getDate() - 7);
         const dayMillis = 24 * 60 * 60 * 1000;
 
-        const data7d = formattedData.find(d => Math.abs(d.x.getTime() - sevenDaysPrior.getTime()) < dayMillis) || latestData;
+        const data7d = formattedData.find((d: { x: { getTime: () => number; }; }) => Math.abs(d.x.getTime() - sevenDaysPrior.getTime()) < dayMillis) || latestData;
 
         const cap7d = data7d.y;
         const changeVal = latestData.y - cap7d;

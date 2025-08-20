@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { usePrivy, useWallets } from "@privy-io/react-auth";
 import Sidebar from "./sidebar"; // Adjust path to your Sidebar.jsx
 import WalletSection from "../pages/wallet/walletSection";
-import SearchBar from "@/components/SearchBar/searchBar";
+import SearchBar from "../components/searchBar/searchBar";
 import Dashboard from "../components/Dashboard";
 import Notification from "../components/Notification";
 
