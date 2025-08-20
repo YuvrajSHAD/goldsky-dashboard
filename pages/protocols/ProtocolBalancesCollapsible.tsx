@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useProtocolBalances } from "./useProtocolBalances";
+import { useProtocolBalances } from "../../lib/useProtocolBalances";
 import styles from "./ProtocolBalancesCollapsible.module.css";
 
 type Stablecoin = { symbol: string; address: string; decimals?: number };

@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { TOKENS } from './tokenAddresses.js';
+import { TOKENS } from './tokenAddresses';
 
 const API_URL = 'https://www.hyperscan.com/api';
 

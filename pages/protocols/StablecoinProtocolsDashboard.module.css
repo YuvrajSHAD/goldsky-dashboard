@@ -49,7 +49,6 @@
   background: #101c28;
   border: 2px solid #404D3E;
   flex: 1;
-  /* padding: 2rem 1rem; */
   color: #a3d2eb;
   font-size: 1.15rem;
   display: flex;
@@ -60,7 +59,6 @@
   .dashboardGrid {
     grid-template-columns: 1fr;
     gap: 1.1rem;
-    /* margin-right: 10px; */
   }
   .leftPanel, .rightPanel {
     min-width: 0;

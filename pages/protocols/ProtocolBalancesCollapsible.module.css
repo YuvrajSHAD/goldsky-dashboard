@@ -103,8 +103,6 @@
   min-width: 70px;
 }
 
-/* Loading and No data */
-
 .loading,
 .noData {
   color: #b7f2ff;
@@ -113,7 +111,6 @@
   text-align: center;
 }
 
-/* Mobile Responsive */
 
 @media (max-width: 600px) {
   .cardsGrid {

@@ -1,4 +1,4 @@
-// utils/cache.js
+// utils/cache.tsx
 
 export function getCached(key, maxAgeMs) {
   try {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { formatUnits, getAddress } from "ethers";
-import { protocolAddresses } from "../protocols/protocolAddresses";
-import { fetchTokenBalance } from "../protocols/tokenUtils";
+import { protocolAddresses } from "./protocolAddresses";
+import { fetchTokenBalance } from "./tokenUtils";
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));

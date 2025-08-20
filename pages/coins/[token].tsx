@@ -59,14 +59,12 @@ export default function TokenPage() {
   return (
     
     <div className={styles.sCool}>
-      {/* Top Row: Stats Panel */}
        <div
         className={styles.backArrow}
         onClick={() => router.push("/")}
         >
         &#8592;
       </div>
-      {/* <h2 className={styles.tokenTitle}>{tokenMeta.symbol}</h2> */}
       <TokenStatsPanel
         symbol={tokenMeta.symbol}
         address={tokenMeta.address}
