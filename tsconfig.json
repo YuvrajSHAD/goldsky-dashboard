@@ -18,6 +18,6 @@
     "noImplicitThis": false,
     "suppressImplicitAnyIndexErrors": true
   },
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "node_modules/viem/node_modules/ox"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }

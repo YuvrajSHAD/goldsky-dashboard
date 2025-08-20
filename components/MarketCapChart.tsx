@@ -9,6 +9,9 @@ import {
   Title,
   Tooltip,
   Legend,
+  type InteractionMode,
+  type ChartOptions,
+  type TimeUnit,
 } from 'chart.js';
 import { format } from 'date-fns';
 import 'chartjs-adapter-date-fns';
@@ -16,12 +19,12 @@ import 'chartjs-adapter-date-fns';
 ChartJS.register(LinearScale, TimeScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 export default function MarketCapChart() {
-  const [marketData, setMarketData] = useState([]);
+  const [marketData, setMarketData] = useState<{ x: Date; y: number }[]>([]);
   const [totalMarketCap, setTotalMarketCap] = useState(0);
   const [change7d, setChange7d] = useState(0);
   const [percentChange7d, setPercentChange7d] = useState(0);
   const [usdcDominance, setUsdcDominance] = useState(0);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -35,10 +38,12 @@ export default function MarketCapChart() {
         // Safely access USDC dominance
         setUsdcDominance(historicalData[0]?.dominance?.usdc || 0);
 
-        const formattedData = historicalData.map((item: { date: number; totalCirculating: { peggedUSD: any; }; }) => ({
-          x: new Date(item.date * 1000),
-          y: item.totalCirculating?.peggedUSD || 0,
-        }));
+        const formattedData = historicalData.map(
+          (item: { date: number; totalCirculating: { peggedUSD: any } }) => ({
+            x: new Date(item.date * 1000),
+            y: item.totalCirculating?.peggedUSD || 0,
+          })
+        );
 
         if (!isMounted) return;
 
@@ -50,14 +55,18 @@ export default function MarketCapChart() {
           return;
         }
 
-        const latestData = formattedData[formattedData.length -1];
+        const latestData = formattedData[formattedData.length - 1];
         setTotalMarketCap(latestData.y);
 
         const sevenDaysPrior = new Date(latestData.x);
         sevenDaysPrior.setDate(sevenDaysPrior.getDate() - 7);
         const dayMillis = 24 * 60 * 60 * 1000;
 
-        const data7d = formattedData.find((d: { x: { getTime: () => number; }; }) => Math.abs(d.x.getTime() - sevenDaysPrior.getTime()) < dayMillis) || latestData;
+        const data7d =
+          formattedData.find(
+            (d: { x: { getTime: () => number } }) =>
+              Math.abs(d.x.getTime() - sevenDaysPrior.getTime()) < dayMillis
+          ) || latestData;
 
         const cap7d = data7d.y;
         const changeVal = latestData.y - cap7d;
@@ -65,9 +74,9 @@ export default function MarketCapChart() {
         const pctChange = cap7d === 0 ? 0 : (changeVal / cap7d) * 100;
         setPercentChange7d(pctChange);
         setError(null);
-      } catch (err) {
+      } catch (err: any) {
         if (!isMounted) return;
-        setError(err.message);
+        setError(err?.message || String(err));
       }
     };
 
@@ -95,12 +104,12 @@ export default function MarketCapChart() {
     ],
   };
 
-  const chartOptions = {
+  const chartOptions: ChartOptions<'line'> = {
     responsive: true,
     plugins: {
       legend: { display: false },
       tooltip: {
-        mode: 'index',
+        mode: 'index' as InteractionMode,
         intersect: false,
         backgroundColor: '#23272F',
         titleColor: '#fff',
@@ -108,11 +117,11 @@ export default function MarketCapChart() {
         borderColor: '#39424E',
         borderWidth: 1,
         callbacks: {
-          title: context => {
+          title: (context) => {
             const date = context[0].parsed.x;
             return format(new Date(date), 'dd MMM yyyy');
           },
-          label: context => {
+          label: (context) => {
             const value = context.parsed.y;
             if (value >= 1_000_000_000) return `Mcap  $${(value / 1_000_000_000).toFixed(3)}b`;
             if (value >= 1_000_000) return `Mcap  $${(value / 1_000_000).toFixed(3)}m`;
@@ -125,9 +134,9 @@ export default function MarketCapChart() {
     layout: { padding: 24 },
     scales: {
       x: {
-        type: 'time',
+        type: 'time' as const,
         time: {
-          unit: 'month',
+          unit: 'month' as TimeUnit,
           displayFormats: { month: 'MMM' },
           tooltipFormat: 'dd MMM yyyy',
         },
@@ -139,7 +148,6 @@ export default function MarketCapChart() {
         },
         grid: {
           color: '#23272F',
-          borderColor: '#39424E',
         },
       },
       y: {
@@ -147,7 +155,8 @@ export default function MarketCapChart() {
         ticks: {
           color: '#D4D8E8',
           font: { size: 14, weight: 500 },
-          callback: value => {
+          callback: (value) => {
+            if (typeof value !== 'number') return value;
             if (value >= 1_000_000_000) return `$${(value / 1_000_000_000).toFixed(0)}b`;
             if (value >= 1_000_000) return `$${(value / 1_000_000).toFixed(0)}m`;
             if (value >= 1_000) return `$${(value / 1_000).toFixed(0)}k`;
@@ -156,17 +165,14 @@ export default function MarketCapChart() {
         },
         grid: {
           color: '#23272F',
-          borderColor: '#39424E',
           drawTicks: false,
-          drawBorder: false,
         },
       },
     },
   };
 
-
   return (
-    <div 
+    <div
       style={{
         display: 'flex',
         flexDirection: 'row',
@@ -193,8 +199,11 @@ export default function MarketCapChart() {
         <div style={{ color: '#ffffffff', marginBottom: 4, fontSize: 18, fontWeight: 500 }}>
           Total Hyperliquid L1 Stablecoins Market Cap
         </div>
-        <div style={{ fontSize: 28, fontWeight: 700, color: '#4999F6', lineHeight: 1.2, marginBottom: 16 }}>
-          ${totalMarketCap >= 1_000_000_000
+        <div
+          style={{ fontSize: 28, fontWeight: 700, color: '#4999F6', lineHeight: 1.2, marginBottom: 16 }}
+        >
+          $
+          {totalMarketCap >= 1_000_000_000
             ? (totalMarketCap / 1_000_000_000).toFixed(2) + 'b'
             : totalMarketCap >= 1_000_000
             ? (totalMarketCap / 1_000_000).toFixed(2) + 'm'
@@ -212,16 +221,17 @@ export default function MarketCapChart() {
           }}
         >
           {change7d >= 0 ? '+' : ''}
-          {change7d.toLocaleString(undefined, { maximumFractionDigits: 0 })}
-          {' '}
+          {change7d.toLocaleString(undefined, { maximumFractionDigits: 0 })}{' '}
           ({percentChange7d.toFixed(1)}%) (7d)
         </div>
         {error && (
-          <div style={{ color: '#c62828', marginTop: 16, fontWeight: 600 }}>Error: {error}</div>
+          <div style={{ color: '#c62828', marginTop: 16, fontWeight: 600 }}>
+            Error: {error}
+          </div>
         )}
       </div>
       {/* Chart Section (Right 70%) */}
-      <div style={{ flex: '1 1 70%',  padding: '24px 24px 24px 0' }}>
+      <div style={{ flex: '1 1 70%', padding: '24px 24px 24px 0' }}>
         <Line data={chartData} options={chartOptions} />
       </div>
     </div>
