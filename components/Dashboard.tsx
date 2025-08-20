@@ -50,7 +50,7 @@ useEffect(() => {
     .then((data) => {
       const ordered = tokenIds
         .map(t => {
-          const coin = data.find(c => c.id === t.id);
+          const coin = data.find((c: { id: string; }) => c.id === t.id);
           return coin ? { ...coin, symbol: t.symbol, rSymbol: t.rSymbol } : null;
         })
         .filter(Boolean);
