@@ -44,9 +44,11 @@ export default function ProtocolBalancesCollapsible({
 
   // UI logic AFTER hooks!
   if (loading && !localData.length)
-    return <div className={styles.loading}>Loading protocol balances for {stablecoin.symbol}...</div>;
+    return <div className={styles.loading}>Loading protocol balances for {stablecoin?.symbol ?? '...' }...</div>;
+
+// No data case
   if (!displayData.length)
-    return <div className={styles.noData}>No protocol balances found for {stablecoin.symbol}.</div>;
+    return <div className={styles.noData}>No protocol balances found for {stablecoin?.symbol ?? '...' }.</div>;
 
   const toggleGroup = (group: string) => {
     setExpandedGroups(prev => ({ ...prev, [group]: !prev[group] }));
@@ -54,7 +56,7 @@ export default function ProtocolBalancesCollapsible({
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.header}>{stablecoin.symbol} — Top Protocol Holders</h2>
+    <h2 className={styles.header}>{stablecoin?.symbol ?? 'Token'} — Top Protocol Holders</h2>
       {Object.entries(grouped).map(([protocolType, items]) => {
         const isExpanded = !!expandedGroups[protocolType];
         const visibleItems = isExpanded ? items : items.slice(0, DEFAULT_VISIBLE);
