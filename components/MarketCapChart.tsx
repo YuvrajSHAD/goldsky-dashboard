@@ -126,7 +126,7 @@ export default function MarketCapChart() {
     layout: { padding: 24 },
     scales: {
       x: {
-        type: 'timeseries',
+        type: 'time' as const,
         time: {
           unit: 'month',
           displayFormats: { month: 'MMM' },
