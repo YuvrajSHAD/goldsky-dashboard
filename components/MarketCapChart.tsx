@@ -35,7 +35,7 @@ export default function MarketCapChart() {
         // Safely access USDC dominance
         setUsdcDominance(historicalData[0]?.dominance?.usdc || 0);
 
-        const formattedData = historicalData.map(item => ({
+        const formattedData = historicalData.map((item: { date: number; totalCirculating: { peggedUSD: any; }; }) => ({
           x: new Date(item.date * 1000),
           y: item.totalCirculating?.peggedUSD || 0,
         }));
