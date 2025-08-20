@@ -1,0 +1,125 @@
+.container {
+  margin: 1rem 0;
+  color: #8de7ff;
+}
+
+.header {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.groupSection {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #094860;
+  padding-bottom: 1rem;
+}
+
+.groupHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  padding: 0.3rem 0;
+}
+
+.groupTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.toggleButton {
+  background: transparent;
+  border: none;
+  color: #40ffd4;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.toggleButton:hover {
+  color: #60ffc9;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-top: 0.7rem;
+}
+
+.card {
+  background: #1a2433;
+  border-radius: 10px;
+  border: 1.5px solid #40ffd4;
+  padding: 1.1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+  box-shadow: none;
+  transition: background 0.14s;
+}
+.card:hover {
+  background: #15435b;
+}
+
+.cardLabel {
+  align-self: flex-start;
+  background: #40ffd4;
+  color: #012e3c;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 0.3em 0.7em;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.cardItem {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.address {
+  font-family: "JetBrains Mono", monospace;
+  background: rgba(12, 48, 71, 0.13);
+  border-radius: 5px;
+  padding: 2px 6px;
+  font-size: 0.9rem;
+  color: #ddeeff;
+  word-break: break-all;
+  margin-left: 6px;
+  max-width: 170px;
+}
+
+.balance {
+  color: #faff70;
+  font-weight: 700;
+  text-align: right;
+  min-width: 70px;
+}
+
+/* Loading and No data */
+
+.loading,
+.noData {
+  color: #b7f2ff;
+  font-size: 1.2rem;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+/* Mobile Responsive */
+
+@media (max-width: 600px) {
+  .cardsGrid {
+    grid-template-columns: 1fr;
+  }
+  .address {
+    max-width: 100%;
+  }
+}

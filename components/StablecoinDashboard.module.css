@@ -1,0 +1,56 @@
+.dashboardContainer {
+  padding: 20px;
+}
+
+.placeholder {
+  border: 2px solid #404D3E;
+  /* border-radius: 12px; */
+  min-height: 120px;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #555;
+  font-family: "caveat, sans-serif";
+   box-shadow: 0 0 2px rgba(48, 147, 108, 0.7);
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 20px;
+}
+
+.tokenCard {
+  border: 2px solid #404D3E;
+   box-shadow: 0 0 2px rgba(48, 147, 108, 0.7);
+   color: #DCE1DB;
+  padding: 15px; 
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: box-shadow 0.5s ease-in-out;
+  outline: none; 
+}
+
+.tokenCard:hover {
+  background-color: #DCE1DB;
+  color: #151515;
+  box-shadow: 0 0 10px rgba(15, 209, 34, 0.7);
+}
+
+.tokenImage {
+  margin-right: 20px; /* Increased margin for better spacing */
+  width: 50px;
+  height: 50px;
+}
+
+.tokenSymbol {
+  margin: 0;
+  font-size: 1.2em; /* Slightly larger font size */
+}
+
+.tokenPrice,
+.tokenMarketCap {
+  margin: 4px 0;
+  font-size: 0.9em; /* Reduced font size for price and market cap */
+}
+

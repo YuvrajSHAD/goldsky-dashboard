@@ -1,0 +1,39 @@
+.walletSection {
+  color: #DCE1DB  ;
+  padding:20px;
+
+}
+
+.coolContainer{
+  border: 2px solid #404D3E;
+  display: block;
+  padding: 20px
+}
+
+/* .loginBtn{
+  position: absolute;
+  right: 60px;
+  top:115px;
+} */
+
+.noBorder {
+  border: none;
+}
+
+.loginBtn{
+  position: relative;
+  right: -1230px;
+  top:-77px;
+}
+
+.logoutBtn{
+  position: relative;
+  right: -1230px;
+  top:-77px;
+}
+
+@media (max-width:800px){
+  .loginBtn , .logoutBtn{
+    position:static;
+  }
+}

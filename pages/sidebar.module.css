@@ -1,0 +1,250 @@
+.sidebarDrawer {
+  position: fixed;
+  top: 0; left: 0;
+  width: 270px;
+  height: 100vh;
+  background: rgba(28,31,38,0.97);
+  padding: 2rem 1.2rem;
+  box-sizing: border-box;
+  border-right: 2px solid #404D3E;
+  box-shadow: 3px 0 16px 0 rgba(10,10,40,0.10);
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  color: #c3d4ff;
+  font-family: 'Inter', sans-serif;
+  transform: translateX(-100%);
+  transition: transform 0.3s cubic-bezier(.47,1.64,.41,.8);
+}
+
+.sidebarDrawer.open {
+  transform: translateX(0);
+}
+
+.sidebarClose {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2.5rem;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+/* Fact Rotator and Text */
+.sidebarFact {
+  background: #132b5a;
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-style: italic;
+  font-size: 1rem;
+}
+
+.recentTxSection {
+  background: #152948;
+  padding: 1rem 1.1rem;
+  margin-bottom: 2rem;
+  min-height: 88px;
+}
+
+.recentTxHeading {
+  color: #6ab7ff;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  font-size: 1.07rem;
+}
+
+.loadingText {
+  color: #819dc8;
+  font-style: italic;
+  font-size: 0.97rem;
+  text-align: center;
+}
+
+.txCard {
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid #1f2c46;
+}
+
+.txMainLine {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.txSymbol {
+  color: #00e0ff;
+  font-weight: 700;
+  font-size: 1.08em;
+  letter-spacing: 0.5px;
+}
+
+.txValue {
+  color: #b0f2fd;
+  font-family: "JetBrains Mono", "Fira Mono", monospace;
+  font-size: 1.01em;
+}
+
+.txAddressRow {
+  font-family: "JetBrains Mono", "Fira Mono", monospace;
+  font-size: 0.97em;
+  color: #a0bbdf;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-top: 2px;
+  margin-left: 3px;
+}
+
+.addr {
+  color: #d1e9ff;
+  opacity: 0.98;
+}
+
+.txArrow {
+  color: #75eafc;
+  font-size: 1.16em;
+}
+
+.sidebarSocials {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding-left: 0.3rem;
+}
+
+.sidebarLink {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: #94a6cc;
+  font-weight: 600;
+  font-size: 1.02rem;
+  text-decoration: none;
+  padding: 0.55rem 0.9rem;
+  position: relative;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.sidebarLink:hover {
+  color: #d4e8ff;
+  background-color: #21375c;
+}
+
+.icon {
+  font-size: 1.25rem;
+}
+
+.externalArrow {
+  margin-left: auto;
+  font-size: 0.9rem;
+  color: #7792b8;
+  user-select: none;
+}
+
+.telegramCta {
+  margin-top: 1.9rem;
+  padding: 12px 1.75rem;
+  background-color: #269bf8;
+  color: white;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.telegramCta:hover {
+  background-color: #1e7de0;
+}
+
+.agentHeader {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  padding: 0.25rem 0 0.7rem 0;
+}
+
+.agentIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: #1a273d;
+  box-shadow: 0 2px 10px rgba(32,64,160,0.14);
+}
+
+.agentTitleBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.agentTitle {
+  color: #e7f6ff;
+  font-size: 1.44rem;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  line-height: 1.15;
+  margin-bottom: 0.06em;
+}
+
+.sidebarToggle {
+  position: fixed;
+  top: 16px;
+  left: 18px;
+  width: 46px;
+  height: 46px;
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  color: #36d3ff;
+  z-index: 1300;
+  cursor: pointer;
+  display: none;
+  padding: 0;
+  line-height: 1;
+}
+
+@media (max-width: 768px) {
+  .sidebarDrawer {
+    width: 80vw;
+    min-width: 220px;
+    max-width: 90vw;
+  }
+
+  .sidebarToggle {
+    display: block;
+  }
+}
+
+@media (min-width: 769px) {
+  .sidebarDrawer, .sidebarDrawer.open {
+    transform: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 270px;
+  }
+
+  .sidebarToggle, .sidebarClose {
+    display: none !important;
+  }
+}
+
+.sidebarBackdrop {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.42);
+  z-index: 1000;
+}

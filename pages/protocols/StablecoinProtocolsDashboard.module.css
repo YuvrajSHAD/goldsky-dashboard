@@ -1,0 +1,70 @@
+.dashboardGrid {
+  display: grid;
+  grid-template-columns: .7fr 1fr;
+  gap: 2rem;
+  padding-bottom: 40px;
+  align-items: center;
+}
+
+.leftPanel {
+  padding: 1rem 1rem;
+  border: 2px solid #404D3E;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  color: #8de7ff;
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.tokenList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.tokenRow {
+  padding: 0.9rem 1rem;
+  background: #192a3a;
+   border: 1px solid #404D3E;
+  color: #98e6f9;
+  cursor: pointer;
+  transition: background 0.14s, color 0.14s;
+}
+.tokenRow:hover {
+  background: #255e81;
+  color: #c4f4fe;
+  border-color: #5bf6f6;
+}
+.active {
+  background: #2ce3dc;
+  color: #18232e;
+  font-weight: bold;
+  border-color: #52fee2;
+}
+.rightPanel {
+  background: #101c28;
+  border: 2px solid #404D3E;
+  flex: 1;
+  /* padding: 2rem 1rem; */
+  color: #a3d2eb;
+  font-size: 1.15rem;
+  display: flex;
+  align-items: flex-start;
+}
+
+@media (max-width: 900px) {
+  .dashboardGrid {
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+    /* margin-right: 10px; */
+  }
+  .leftPanel, .rightPanel {
+    min-width: 0;
+    width: 95%;
+    margin-bottom: 1.3rem;
+  }
+}

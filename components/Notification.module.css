@@ -1,0 +1,25 @@
+.notification {
+  position: fixed;
+  top: 20px;
+  right: -300px;
+  background: rgba(30, 30, 40, 0.95);
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: 0 0 12px rgba(200, 0, 255, 0.4);
+  transition: right 0.5s ease, opacity 0.5s ease;
+  opacity: 0;
+  z-index: 9999;
+}
+
+.show {
+  right: 20px;
+  opacity: 1;
+}
+
+.hide {
+  right: -300px;
+  opacity: 0;
+}
+
