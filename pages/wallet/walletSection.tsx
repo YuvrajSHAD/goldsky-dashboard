@@ -8,8 +8,8 @@ interface WalletSectionProps {
   login: () => void;
   logout: () => void;
   loginMethod: string | undefined;
-  externalWallet: any;
-  embeddedWallet: any;
+  externalWallet: unknown;
+  embeddedWallet: unknown;
   displayName: string | null;
   points: number | null;
 }

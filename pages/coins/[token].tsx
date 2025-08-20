@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { fetchTransfersByToken, fetchAllTransfersByToken } from "../../utils/graphqlClient";
+import { fetchTransfersByToken} from "../../utils/graphqlClient";
 import { STABLECOINS } from "../../utils/tokenAddresses";
 import TokenStatsPanel from "../../components/TokenStatsPanel";
 import TokenActivityChart from "../../components/TokenActivityChart";
@@ -15,7 +15,7 @@ export default function TokenPage() {
   const [transfers, setTransfers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [holders, setHolders] = useState("--"); // Fill if you have a holders fetch!
+  const [holders] = useState("--"); // Fill if you have a holders fetch!
 
   // Filters
   const [minValue, setMinValue] = useState(0);

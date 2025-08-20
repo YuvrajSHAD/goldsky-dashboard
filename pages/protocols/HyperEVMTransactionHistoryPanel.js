@@ -16,7 +16,7 @@ const tokenOptions = [
 ];
 
 
-const seriesColor = "#38c8ff";
+// const seriesColor = "#38c8ff";
 
 async function fetchVolumeHistoryFromGecko(id, days = 30) {
   const cacheKey = `cg_volume_${id}_${days}`;

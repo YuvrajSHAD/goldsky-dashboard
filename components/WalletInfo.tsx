@@ -64,7 +64,7 @@ export default function WalletInfo({ wallet, label, loginMethod, displayName, po
     <div className={Styles.walletInfoContainer}>
       <div className={`${Styles.walletCard} ${Styles.profileCard}`}>
         <div className={Styles.profileIconInner}>
-          <img src="../2.gif"/>
+          <img src="../2.gif" alt="profile icon"/>
         </div>
         {/* Profile Icon Here */}
       </div>
