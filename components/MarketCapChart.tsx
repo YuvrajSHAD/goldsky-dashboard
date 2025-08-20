@@ -149,6 +149,10 @@ export default function MarketCapChart() {
         grid: {
           color: '#23272F',
         },
+        border: {
+        color: '#39424E',
+        display: true
+       }
       },
       y: {
         beginAtZero: true,
@@ -161,11 +165,13 @@ export default function MarketCapChart() {
             if (value >= 1_000_000) return `$${(value / 1_000_000).toFixed(0)}m`;
             if (value >= 1_000) return `$${(value / 1_000).toFixed(0)}k`;
             return `$${value}`;
-          },
+},
         },
         grid: {
           color: '#23272F',
+          borderColor: '#39424E',
           drawTicks: false,
+          drawBorder: false,
         },
       },
     },

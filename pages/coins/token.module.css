@@ -1,5 +1,4 @@
 .sCool{
-    /* min-height: 100vh; */
     margin: 40px 100px 10px 100px;
 }
 .mainContainer{
@@ -41,29 +40,26 @@
 .chartContainer{
     flex: 1 1 40%;
     background: rgba(28,31,38,0.97);
-    /* box-shadow: 0 0px 10px rgba(49, 178, 115, 0.7); */
     padding: 28px;
     min-width: 400px;
-    /* height: 500px; */
 }
 .tableScroll {
-  max-height: 550px;     /* or whatever fits your design */
+  max-height: 550px;   
   overflow-y: auto;
-  /* overflow-x: auto; */
+
 }
 
-/* Custom scrollbar for this table wrapper */
 .tableScroll::-webkit-scrollbar {
   width: 8px;
 }
 
 .tableScroll::-webkit-scrollbar-thumb {
-  background: #8d3fce;         /* Theme color, matches the purple border */
+  background: #8d3fce;        
   border-radius: 6px;
 }
 
 .tableScroll::-webkit-scrollbar-track {
-  background: rgba(40, 34, 47, 0.7); /* Slightly darken for contrast */
+  background: rgba(40, 34, 47, 0.7);
 }
 
 .tableScroll {
@@ -106,7 +102,7 @@
   color: white;
   cursor: pointer;
   user-select: none;
-  z-index: 50; /* so it stays above content */
+  z-index: 50;
   transition: transform 0.2s ease;
 }
 
@@ -115,7 +111,6 @@
 }
 
 @media (max-width: 800px) {
-  /* Stack left and right containers vertically */
   .childContainer {
     display: flex;
     flex-direction: column;
@@ -126,7 +121,7 @@
     margin: 0;
   }
 
-  /* Full width for the table container with horizontal scroll */
+
   .tableContainer {
     width: 100%;
     max-width: 100%;
@@ -136,7 +131,7 @@
     overflow-x: auto;
   }
 
-  /* Full width for the chart container */
+
   .chartContainer {
     width: 100%;
     max-width: 100%;
@@ -144,8 +139,6 @@
     margin: 0 auto;
     box-sizing: border-box;
   }
-
-  /* Stack labels and inputs in the filtering controls */
   .tableContainer > div[style*="flex"] {
     flex-direction: column;
     gap: 12px;

@@ -4,7 +4,6 @@
 
 .placeholder {
   border: 2px solid #404D3E;
-  /* border-radius: 12px; */
   min-height: 120px;
   margin-bottom: 30px;
   text-align: center;
@@ -38,19 +37,19 @@
 }
 
 .tokenImage {
-  margin-right: 20px; /* Increased margin for better spacing */
+  margin-right: 20px;
   width: 50px;
   height: 50px;
 }
 
 .tokenSymbol {
   margin: 0;
-  font-size: 1.2em; /* Slightly larger font size */
+  font-size: 1.2em;
 }
 
 .tokenPrice,
 .tokenMarketCap {
   margin: 4px 0;
-  font-size: 0.9em; /* Reduced font size for price and market cap */
+  font-size: 0.9em;
 }
 
