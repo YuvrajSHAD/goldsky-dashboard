@@ -165,9 +165,7 @@ export default function MarketCapChart() {
         },
         grid: {
           color: '#23272F',
-          borderColor: '#39424E',
           drawTicks: false,
-          drawBorder: false,
         },
       },
     },
