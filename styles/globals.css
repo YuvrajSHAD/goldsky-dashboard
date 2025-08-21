@@ -195,7 +195,7 @@ button {
   .dashboardContainer, 
   .layoutContainer, 
   .containerr {
-    margin-top: 48px !important;
+    margin-top: 2px !important;
   }
 
   .dashboardContainer,
@@ -243,5 +243,8 @@ button {
     padding: 0 !important;
     display: flex !important;
   }
-
+  .mView{
+    display: flex !important;
+    flex-direction: column !important;
+  }
 }

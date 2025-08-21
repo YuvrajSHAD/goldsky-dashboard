@@ -178,7 +178,7 @@ export default function MarketCapChart() {
   };
 
   return (
-    <div
+    <div className="mView"
       style={{
         display: 'flex',
         flexDirection: 'row',
