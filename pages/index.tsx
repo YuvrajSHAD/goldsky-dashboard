@@ -1,14 +1,16 @@
 import { useState, useEffect, useCallback } from "react";
 import { usePrivy, useWallets } from "@privy-io/react-auth";
-import Sidebar from "./sidebar"; // Adjust path to your Sidebar.jsx
+import Sidebar from "./sidebar";
 import WalletSection from "../pages/wallet/walletSection";
 import SearchBar from "../components/searchBar/searchBar";
 import Dashboard from "../components/Dashboard";
 import Notification from "../components/Notification";
+import { motion, AnimatePresence } from "framer-motion";
+import LoadingScreen from "../components/LoadingScreen"; // Adjust this import path as needed
 
 export default function Home() {
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [loadingFinished, setLoadingFinished] = useState(false);
 
   const { ready, authenticated, user, login, logout } = usePrivy();
   const { wallets } = useWallets();
@@ -18,8 +20,8 @@ export default function Home() {
 
   const displayName = loginAccount
     ? (loginMethod === "google_oauth" || loginMethod === "email"
-      ? loginAccount.email || null
-      : loginAccount.username || null)
+        ? loginAccount.email || null
+        : loginAccount.username || null)
     : null;
 
   const embeddedWallet = wallets.find((w) => w.walletClientType === "privy");
@@ -27,7 +29,7 @@ export default function Home() {
   const walletAddress = embeddedWallet?.address || externalWallet?.address || null;
 
   const [points, setPoints] = useState(0);
-  const [notification, setNotification] = useState(null);
+  const [notification, setNotification] = useState<string | null>(null);
   const [theme, setTheme] = useState("light");
 
   const [checklist, setChecklist] = useState({
@@ -57,60 +59,76 @@ export default function Home() {
     }
   }, [authenticated, walletAddress, checkAndAward]);
 
-  const handleChecklistChange = (key, checked) => {
+  const handleChecklistChange = (key: keyof typeof checklist, checked: boolean) => {
     setChecklist((c) => ({ ...c, [key]: checked }));
     if (checked) {
-      setPoints((p) => p + 25); // Increment points when completing a task
+      setPoints((p) => p + 25);
     }
   };
 
-  if (!ready) return <p>Loading...</p>;
+  // <- THIS IS THE ONLY LOADING LOGIC NOW!
+  const showLoader = !ready || !loadingFinished;
 
   return (
     <>
-      {/* Hamburger icon (≡) */}
-      <button
-        className="sidebarToggle"
-        onClick={() => setSidebarOpen(true)}
-        aria-label="Open sidebar"
-      >
-        &#9776;
-      </button>
-      <div className="layoutContainer" style={{ display: "flex", height: "100vh" }}>
-        {/* Optional dim overlay */}
-        {sidebarOpen && (
-          <div
-            className="sidebarBackdrop"
-            onClick={() => setSidebarOpen(false)}
-          />
+      <AnimatePresence mode="wait">
+        {showLoader ? (
+          <LoadingScreen key="loader" onFinish={() => setLoadingFinished(true)} />
+        ) : (
+          <motion.div
+            key="mainContent"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.7 }}
+            style={{ minHeight: "100vh" }}
+          >
+            {/* Hamburger icon (≡) */}
+            <button
+              className="sidebarToggle"
+              onClick={() => setSidebarOpen(true)}
+              aria-label="Open sidebar"
+            >
+              &#9776;
+            </button>
+            <div className="layoutContainer" style={{ display: "flex", height: "100vh" }}>
+              {/* Optional dim overlay */}
+              {sidebarOpen && (
+                <div
+                  className="sidebarBackdrop"
+                  onClick={() => setSidebarOpen(false)}
+                />
+              )}
+              <Sidebar
+                open={sidebarOpen}
+                onClose={() => setSidebarOpen(false)}
+                theme={theme}
+                toggleTheme={toggleTheme}
+                checklist={checklist}
+                onChecklistChange={handleChecklistChange}
+                points={points}
+              />
+              <main className="mainContent" style={{ flexGrow: 1, padding: "1rem 2rem" }}>
+                <div className="searchBarMargin">
+                  <SearchBar />
+                </div>
+                <WalletSection
+                  authenticated={authenticated}
+                  login={login}
+                  logout={logout}
+                  loginMethod={loginMethod}
+                  embeddedWallet={embeddedWallet}
+                  externalWallet={externalWallet}
+                  displayName={displayName}
+                  points={points}
+                />
+                <Dashboard />
+                {notification && <Notification message={notification} onClose={() => setNotification(null)} />}
+              </main>
+            </div>
+          </motion.div>
         )}
-        <Sidebar
-          open={sidebarOpen}
-          onClose={() => setSidebarOpen(false)}
-          theme={theme}
-          toggleTheme={toggleTheme}
-          checklist={checklist}
-          onChecklistChange={handleChecklistChange}
-          points={points}
-        />
-        <main className="mainContent" style={{ flexGrow: 1, padding: "1rem 2rem" }}>
-          <div className="searchBarMargin">
-            <SearchBar />
-          </div>
-          <WalletSection
-            authenticated={authenticated}
-            login={login}
-            logout={logout}
-            loginMethod={loginMethod}
-            embeddedWallet={embeddedWallet}
-            externalWallet={externalWallet}
-            displayName={displayName}
-            points={points}
-          />
-          <Dashboard />
-          {notification && <Notification message={notification} onClose={() => setNotification(null)} />}
-        </main>
-      </div>
+      </AnimatePresence>
     </>
   );
 }

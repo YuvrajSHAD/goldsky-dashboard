@@ -1,6 +1,7 @@
 import { Wallet } from '@privy-io/react-auth';
 import { useEffect, useState } from 'react';
 import { JsonRpcProvider, formatUnits } from 'ethers';
+import useHLName from '../utils/hooks/useHLName'; // Import your HL Name hook
 import Styles from '../pages/wallet/WalletInfo.module.css';
 
 interface Props {
@@ -16,6 +17,9 @@ const RPC_URL = 'https://rpc.hyperliquid.xyz/evm';
 export default function WalletInfo({ wallet, label, loginMethod, displayName, points }: Props) {
   const [address, setAddress] = useState<string | null>(null);
   const [balance, setBalance] = useState<string>('Loading...');
+
+  // Use HL Name hook with the current address
+  const hlName = useHLName(address);
 
   useEffect(() => {
     const loadWalletData = async () => {
@@ -64,13 +68,13 @@ export default function WalletInfo({ wallet, label, loginMethod, displayName, po
     <div className={Styles.walletInfoContainer}>
       <div className={`${Styles.walletCard} ${Styles.profileCard}`}>
         <div className={Styles.profileIconInner}>
-          <img src="../2.gif" alt="profile icon"/>
+          <img src="../2.gif" alt="profile icon" />
         </div>
         {/* Profile Icon Here */}
       </div>
       <div className={Styles.walletCard}>
-      <h2 className={Styles.walletInfoTitle}>{label || 'Wallet'}</h2>
-      <p><strong>Address <br /><br /></strong> {address}</p>
+        <h2 className={Styles.walletInfoTitle}>{label || 'Wallet'}</h2>
+        <p><strong>Address <br /><br /></strong> {hlName ?? address}</p> {/* Show HL Name if exists, else address */}
       </div>
       <div className={Styles.walletCard}>
         <p><strong>Login Method:</strong> {getReadableLoginMethod(loginMethod, wallet.walletClientType)}</p>
