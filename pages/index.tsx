@@ -12,6 +12,13 @@ export default function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loadingFinished, setLoadingFinished] = useState(false);
 
+  useEffect(() => {
+  const saved = sessionStorage.getItem("loadingFinished") === "true";
+  if (saved) {
+    setLoadingFinished(true);
+    }
+  }, []);
+
   const { ready, authenticated, user, login, logout } = usePrivy();
   const { wallets } = useWallets();
 
@@ -65,7 +72,10 @@ export default function Home() {
       setPoints((p) => p + 25);
     }
   };
-
+  const handleLoadingFinish = () => {
+    setLoadingFinished(true);
+    sessionStorage.setItem("loadingFinished", "true");
+  };
   // <- THIS IS THE ONLY LOADING LOGIC NOW!
   const showLoader = !ready || !loadingFinished;
 
@@ -73,7 +83,7 @@ export default function Home() {
     <>
       <AnimatePresence mode="wait">
         {showLoader ? (
-          <LoadingScreen key="loader" onFinish={() => setLoadingFinished(true)} />
+          <LoadingScreen onFinish={handleLoadingFinish}/>
         ) : (
           <motion.div
             key="mainContent"
