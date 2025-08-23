@@ -37,6 +37,12 @@ At the same time, it uses **subgraphs** for parts of the app where structured Gr
 - Provides quick developer experience and integration with existing dApps.
 - Great for specific, lower traffic, and tightly scoped queries.
 
+### User Authentication & Identity
+
+- Integrates **Privy** for secure, multi-method login enabling easy onboarding.
+- Supports **embedded wallets** created post-login, removing the need for external wallet dependencies.
+- Displays **Hyperliquid Names (.hl)** as user identities when linked to wallet addresses, improving usability and personalization.
+
 ---
 
 ## Features
@@ -45,6 +51,8 @@ At the same time, it uses **subgraphs** for parts of the app where structured Gr
 - PostgreSQL backend running in Docker, accessible via secure tunnels or VPN.
 - Configurable subscription-based whale alerts on token transfers.
 - Analytical commands like leaderboards, holder distributions, and transfer activity spikes.
+- User login and embedded wallet management through Privy.
+- Identity display using Hyperliquid Names (.hl).
 - Demo Telegram bot querying pipeline data (optional).
 
 ---
@@ -55,7 +63,7 @@ At the same time, it uses **subgraphs** for parts of the app where structured Gr
    Runs with dedicated persistent storage.
 
 2. **Goldsky Pipelines:**  
-   Configure pipeline  with your connection url (project uses postgres SQL)
+   Configure pipeline with your connection URL (project uses PostgreSQL SQL).
 
 3. **Data Access:**  
    Connect your analytics tools or apps directly to Postgres for customized queries.
@@ -63,7 +71,10 @@ At the same time, it uses **subgraphs** for parts of the app where structured Gr
 4. **Subgraphs:**  
    Implement or integrate subgraphs for parts of your app needing GraphQL APIs.
 
-5. **Networking:**  
+5. **User Authentication:**  
+   Set up Privy for login and embedded wallets with Hyperliquid Name integration.
+
+6. **Networking:**  
    Use ngrok (development), VPN, or SSH tunnels for database connection.
 
 ---
@@ -71,13 +82,23 @@ At the same time, it uses **subgraphs** for parts of the app where structured Gr
 ## Why Use Both Pipelines and Subgraphs?
 
 | Feature                     | Goldsky Pipelines                  | Subgraphs                        |
-|-----------------------------|----------------------------------|---------------------------------|
-| Data Latency                | Low, streaming real-time data     | Moderate, query-based            |
-| Data Model                 | Flexible, combines on/off-chain   | Structured for on-chain only    |
-| Scalability                | High throughput, multi-chain      | Best for low/moderate traffic   |
-| Query Language             | SQL                              | GraphQL                        |
-| Infrastructure            | User-managed storage/queries      | Hosted managed indexing         |
-| Use Cases                 | Real-time analytics, big data       | Specific dApp or API queries    |
+|----------------------------|----------------------------------|---------------------------------|
+| Data Latency               | Low, streaming real-time data     | Moderate, query-based            |
+| Data Model                | Flexible, combines on/off-chain   | Structured for on-chain only    |
+| Scalability               | High throughput, multi-chain      | Best for low/moderate traffic   |
+| Query Language            | SQL                              | GraphQL                        |
+| Infrastructure           | User-managed storage/queries      | Hosted managed indexing         |
+| Use Cases                | Real-time analytics, big data      | Specific dApp or API queries    |
+
+---
+
+## Future Improvements and Features
+
+- **Mint Hyperliquid Names (.hl) directly from the dashboard** to enable users to secure human-readable identities.
+- **Create alerts and notifications via the dashboard UI** without relying solely on Telegram bot commands—making it more user-friendly.
+- **Multi-platform alert delivery**, including Discord, Telegram, email, and other messaging apps to increase accessibility.
+- **Expanded embedded wallet features** such as transaction signing and portfolio management within the dashboard.
+- **Enhanced analytics**, including deeper token flow visualizations, historical trends, and predictive alerts.
 
 ---
 
