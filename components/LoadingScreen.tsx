@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const fullText = "Hyperliquid Nexus: Wallets, stablecoin data, Goldsky transactions, and Whale Alert Telegram — all in one place";
+const fullText = "Wallets, stablecoins, Goldsky transactions, and Whale Alert Telegram — all in one place.";
 
 export default function LoadingScreen({ onFinish }: { onFinish: () => void }) {
   const [displayedText, setDisplayedText] = useState("");
