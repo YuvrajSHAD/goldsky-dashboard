@@ -70,7 +70,7 @@ export default function Sidebar({ open, onClose, checklist, onChecklistChange })
           className={styles.agentIcon}
         />
         <div className={styles.agentTitleBlock}>
-          <div className={styles.agentTitle}>GoldBoard</div>
+          <div className={styles.agentTitle}>Hyper Nexus</div>
         </div>
       </div>
       <br />
