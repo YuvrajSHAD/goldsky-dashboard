@@ -3,6 +3,8 @@
 A comprehensive dashboard showcasing both Goldsky pipelines and traditional subgraphs to provide real-time, scalable analytics on Hyperliquid stablecoins. This project demonstrates the strengths and trade-offs of each approach in Web3 data indexing.
 
 ---
+### Announcement: This project won 2nd position in Hyperliquid Community Hackathon Bounty (Best Use of Goldsky .
+> <img width="984" height="458" alt="image" src="https://github.com/user-attachments/assets/3cd0eecd-8427-4bbb-b4b4-a23f99c1ec95" />
 
 ## What Problem This Project Solves
 
